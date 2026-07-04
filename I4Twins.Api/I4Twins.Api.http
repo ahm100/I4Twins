@@ -1,4 +1,4 @@
-@I4Twins.Api_HostAddress = http://localhost:5035
+@I4Twins.Api_HostAddress = http://localhost:5082
 
 GET {{I4Twins.Api_HostAddress}}/weatherforecast/
 Accept: application/json
