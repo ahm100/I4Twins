@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("I4Twins.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d84a29f05b70b942c17358ee2bceae1dcf6f306c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99ed63b7bbd7e88f35018a0abc9030ba628b263d")]
 [assembly: System.Reflection.AssemblyProductAttribute("I4Twins.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("I4Twins.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
