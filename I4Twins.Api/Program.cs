@@ -56,7 +56,7 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    await dbContext.Database.EnsureCreatedAsync();
+    await dbContext.Database.EnsureCreatedAsync();// create databae if not exist
 
     var ingestionService = scope.ServiceProvider.GetRequiredService<IIngestionService>();
     var filePath = Path.Combine(AppContext.BaseDirectory, "Data", "readings.jsonl");
