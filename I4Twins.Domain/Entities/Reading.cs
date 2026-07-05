@@ -18,8 +18,7 @@ public class Reading
        
         if (!Enum.IsDefined(typeof(MetricType), metric))
             throw new ArgumentException($"Invalid metric value: {metric}", nameof(metric));
-        if (timestamp.Kind != DateTimeKind.Utc)
-            throw new ArgumentException("Timestamp must be UTC.", nameof(timestamp));
+     
         if (double.IsNaN(value) || double.IsInfinity(value))
             throw new ArgumentException("Value is invalid.", nameof(value));
         if (seq < 0)

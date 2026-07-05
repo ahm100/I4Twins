@@ -58,7 +58,7 @@ public class IngestionService : IIngestionService
                 using var jsonDoc = JsonDocument.Parse(line);
                 var root = jsonDoc.RootElement;
 
-                var deviceId = root.GetProperty("deviced").GetString() ?? throw new JsonException("deviced is null");
+                var deviceId = root.GetProperty("deviceId").GetString() ?? throw new JsonException("deviceId is null");
                 var metricString = root.GetProperty("metric").GetString() ?? throw new JsonException("metric is null");
                 if (!Enum.TryParse<MetricType>(metricString, true, out var metric))
                 {
@@ -72,6 +72,7 @@ public class IngestionService : IIngestionService
                 {
                     throw new FormatException($"Invalid timestamp format: {tsString}");
                 }
+
 
                 var reading = new Reading(deviceId, metric, timestamp.ToUniversalTime(), value, seq);
 

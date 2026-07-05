@@ -1,6 +1,8 @@
 ﻿using I4Twins.Application.Services;
 using I4Twins.Domain.Enums;
+using I4Twins.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace I4Twins.Api.Controllers;
 
@@ -89,4 +91,21 @@ public class ReadingsController : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpGet("debug")]
+    public async Task<IActionResult> Debug()
+    {
+        using var scope = HttpContext.RequestServices.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+        var all = await dbContext.Readings.ToListAsync();
+        var count = await dbContext.Readings.CountAsync();
+
+        return Ok(new
+        {
+            total = count,
+            readings = all.Take(10)  // فقط ۱۰ تا اول
+        });
+    }
+
 }

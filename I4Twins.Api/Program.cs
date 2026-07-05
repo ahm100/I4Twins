@@ -59,7 +59,7 @@ using (var scope = app.Services.CreateScope())
     await dbContext.Database.EnsureCreatedAsync();// create databae if not exist
 
     var ingestionService = scope.ServiceProvider.GetRequiredService<IIngestionService>();
-    var filePath = Path.Combine(AppContext.BaseDirectory, "Data", "readings.jsonl");
+    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "readings.jsonl");
 
     await ingestionService.ProcessFileAsync(filePath);
 
