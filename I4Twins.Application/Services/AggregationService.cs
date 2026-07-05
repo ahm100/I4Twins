@@ -32,7 +32,7 @@ public class AggregationService : IAggregationService
     public async Task<List<AggregationBucketDto>> GetAggregatedAsync(
         string deviceId, MetricType metric, DateTime from, DateTime to, int bucketSizeSeconds)
     {
-        var readings = await _repository.GetByFilterAsync(deviceId, MetricType, from, to);
+        var readings = await _repository.GetByFilterAsync(deviceId, metric, from, to);
 
         if (!readings.Any())
             return new List<AggregationBucketDto>();
