@@ -15,6 +15,10 @@ public class AppDbContext : DbContext
         {
             entity.HasKey(r => r.Id);
 
+            entity.Property(r => r.Metric)
+             .HasConversion<string>()
+             .HasMaxLength(20);
+
             // کلید یکتا برای deduplication
             entity.HasIndex(r => new { r.DeviceId, r.Metric, r.Timestamp, r.Seq })
                   .IsUnique();

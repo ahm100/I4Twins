@@ -1,4 +1,5 @@
 ﻿using I4Twins.Domain.Entities;
+using I4Twins.Domain.Enums;
 using I4Twins.Domain.Interfaces;
 using I4Twins.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +28,7 @@ public class ReadingRepository : IReadingRepository
         }
     }
 
-    public async Task<List<Reading>> GetByFilterAsync(string deviceId, string metric, DateTime from, DateTime to)
+    public async Task<List<Reading>> GetByFilterAsync(string deviceId, MetricType metric, DateTime from, DateTime to)
     {
         return await _context.Readings
             .Where(r => r.DeviceId == deviceId

@@ -1,4 +1,5 @@
 ﻿using I4Twins.Domain.Entities;
+using I4Twins.Domain.Enums;
 using I4Twins.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
@@ -58,7 +59,11 @@ public class IngestionService : IIngestionService
                 var root = jsonDoc.RootElement;
 
                 var deviceId = root.GetProperty("deviced").GetString() ?? throw new JsonException("deviced is null");
-                var metric = root.GetProperty("metric").GetString() ?? throw new JsonException("metric is null");
+                var metricString = root.GetProperty("metric").GetString() ?? throw new JsonException("metric is null");
+                if (!Enum.TryParse<MetricType>(metricString, true, out var metric))
+                {
+                    throw new JsonException($"Invalid metric value: {metricString}");
+                }
                 var tsString = root.GetProperty("ts").GetString() ?? throw new JsonException("ts is null");
                 var value = root.GetProperty("value").GetDouble();
                 var seq = root.GetProperty("seq").GetInt64();
